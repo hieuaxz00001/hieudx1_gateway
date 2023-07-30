@@ -69,8 +69,6 @@ public class SecurityConfiguration {
 
         // Disable CSRF because of state-less session-management
         http.csrf(ServerHttpSecurity.CsrfSpec::disable);
-  
-        
         // Return 401 (unauthorized) instead of 302 (redirect to login) when
         // authorization is missing or invalid
 //        http.exceptionHandling(eh -> eh.authenticationEntryPoint((request, response, authException) -> {
