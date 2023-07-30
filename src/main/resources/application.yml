@@ -1,0 +1,100 @@
+server:
+  port: 9090
+app:
+  config:
+    keycloak:
+      url: http://localhost:8080/auth
+      realm: hieudx-internet-banking
+      client-secret: htySErUSw4uGbjmhshZYPKuNMkKiUBDR
+      client-id: internet-banking-core-client
+
+spring:
+  main:
+    web-application-type: reactive
+    allow-circular-references: true
+  application:
+    name: internet-banking-api-gateway
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}
+            authorization-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/auth
+            jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+            token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
+            user-info-authentication-method: header
+            user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          internet-banking-core-client:
+            authorization-grant-type: authorization_code
+            client-id: ${app.config.keycloak.client-id}
+            client-secret: ${app.config.keycloak.client-secret}
+            provider: keycloak
+            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+            scope: openid
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+  cloud:
+    discovery:
+      enabled: true
+    loadbalancer:
+      health-check:
+        interval: 25
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: false
+          enabled: false
+      routes:
+        - id: INTERNET-BANKING-USER-SERVICE
+          uri: lb://INTERNET-BANKING-USER-SERVICE
+          predicates:
+            - Path=/user/**
+          filters:
+            - RewritePath=/user/(?<path>.*), /$\{path}
+        - id: internet-banking-fund-transfer-service
+          uri: lb://internet-banking-fund-transfer-service
+          predicates:
+            - Path=/fund-transfer/**
+          filters:
+            - RewritePath=/fund-transfer/(?<path>.*), /$\{path}
+        - id: core-banking-service
+          uri: lb://core-banking-service
+          predicates:
+            - Path=/banking-core/**
+          filters:
+            - RewritePath=/banking-core/(?<path>.*), /$\{path}
+        - id: internet-banking-utility-payment-service
+          uri: lb://internet-banking-utility-payment-service
+          predicates:
+            - Path=/utility-payment/**
+          filters:
+            - RewritePath=/utility-payment/(?<path>.*), /$\{path}
+management:
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    reactor.netty.http.client: INFO
