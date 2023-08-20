@@ -1,4 +1,4 @@
-pipeline {
+node {
     agent none
     environment {
         registry = '0967840437/repository_hieudx'
