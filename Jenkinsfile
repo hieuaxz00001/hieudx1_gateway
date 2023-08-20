@@ -14,8 +14,12 @@ pipeline {
         stage ('Check version docker'){
             steps {
                 sh '''
-                    docker --version
-                    docker compose version
+                sudo groupadd docker
+                usermod -aG docker jenkins
+                usermod -aG root jenkins
+                chmod 777 /var/run/docker.sock
+                docker --version
+                docker compose version
                 '''
             }
         }
