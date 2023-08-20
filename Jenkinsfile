@@ -11,6 +11,14 @@ pipeline {
     }
 
     stages {
+        stage ('Check version docker'){
+            steps {
+                sh '''
+                    docker --version
+                    docker compose version
+                '''
+            }
+        }
         stage('Maven Install') {
             steps('Compilation') {
                 sh './mvnw clean install -DskipTests'
