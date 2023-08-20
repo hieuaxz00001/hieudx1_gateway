@@ -10,13 +10,9 @@ pipeline {
 
     stages {
         stage('Maven Install') {
-            docker {
-                image 'maven:3.5.0'
-            }
             steps('Compilation') {
                 sh './mvnw clean install -DskipTests'
             }
-
         }
 
         stage('Tests and Deployment') {
