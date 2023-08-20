@@ -1,6 +1,4 @@
 pipeline {
-    agent any
-
     environment {
         registry = '0967840437/repository_hieudx'
         registryCredential = 'dckr_pat_3EfgGocyQRcmJ5k-Vv9UnIifrB4'
@@ -8,14 +6,12 @@ pipeline {
         registryPassword = 'Anhhieu159220'
         dockerImage = ''
     }
-    
+
     stages {
         stage('Maven Install') {
-            agent {
                 docker {
                     image 'maven:3.5.0'
                 }
-            }
         }
 
         stage('Compilation') {
@@ -29,14 +25,12 @@ pipeline {
         }
 
         stage('Docker Build') {
-            agent any
             steps {
                 sh 'docker build -t hieudx1/gateway:latest .'
             }
         }
-        
+
         stage('Docker Push') {
-            agent any
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: registryPassword, usernameVariable: registryUserName)]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
