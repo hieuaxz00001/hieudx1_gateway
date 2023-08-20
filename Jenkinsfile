@@ -22,6 +22,13 @@ pipeline {
         //         sh './mvnw test -Punit'
         //     }
         // }
+        stage('Docker login') {
+            steps {
+               withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable : 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+               }
+            }
+        }
 
         stage('Docker Build') {
             steps {
@@ -31,10 +38,7 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable : 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh 'docker push hieudx1/gateway:latest'
-                }
+                sh 'docker push hieudx1/gateway:latest'
             }
         }
     }
