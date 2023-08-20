@@ -1,5 +1,7 @@
-node {
-    agent none
+import jenkins.model.*
+
+pipeline {
+    agent any
     environment {
         registry = '0967840437/repository_hieudx'
         registryCredential = 'dckr_pat_3EfgGocyQRcmJ5k-Vv9UnIifrB4'
@@ -29,7 +31,7 @@ node {
 
         stage('Docker Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: registryPassword, usernameVariable: registryUserName)]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable : 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push hieudx1/gateway:latest'
                 }
