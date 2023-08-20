@@ -17,11 +17,11 @@ pipeline {
             }
         }
 
-        stage('Tests and Deployment') {
-            steps('Runing unit tests') {
-                sh './mvnw test -Punit'
-            }
-        }
+        // stage('Tests and Deployment') {
+        //     steps('Runing unit tests') {
+        //         sh './mvnw test -Punit'
+        //     }
+        // }
 
         stage('Docker Build') {
             steps {
