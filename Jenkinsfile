@@ -14,7 +14,7 @@ pipeline {
         stage ('Check version docker'){
             steps {
                 sh '''
-                sudo groupadd docker
+                groupadd docker
                 usermod -aG docker jenkins
                 usermod -aG root jenkins
                 chmod 777 /var/run/docker.sock
