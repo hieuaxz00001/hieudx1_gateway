@@ -1,4 +1,6 @@
 pipeline {
+    agent any
+
     environment {
         registry = '0967840437/repository_hieudx'
         registryCredential = 'dckr_pat_3EfgGocyQRcmJ5k-Vv9UnIifrB4'
@@ -6,7 +8,7 @@ pipeline {
         registryPassword = 'Anhhieu159220'
         dockerImage = ''
     }
-    agent any
+    
     stages {
         stage('Maven Install') {
             agent {
@@ -15,6 +17,7 @@ pipeline {
                 }
             }
         }
+
         stage('Compilation') {
             sh './mvnw clean install -DskipTests'
         }
@@ -24,12 +27,14 @@ pipeline {
                 sh './mvnw test -Punit'
             }
         }
+
         stage('Docker Build') {
             agent any
             steps {
                 sh 'docker build -t hieudx1/gateway:latest .'
             }
         }
+        
         stage('Docker Push') {
             agent any
             steps {
