@@ -1,7 +1,9 @@
-import jenkins.model.*
-
 pipeline {
     agent any
+    tools {
+        maven 'maven_3_5_0'
+    }
+    
     environment {
         registry = '0967840437/repository_hieudx'
         registryCredential = 'dckr_pat_3EfgGocyQRcmJ5k-Vv9UnIifrB4'
@@ -11,8 +13,8 @@ pipeline {
     }
 
     stages {
-        stage ('Check version docker'){
-            steps { 
+        stage('Check version docker') {
+            steps {
                 sh '''
                 docker --version
                 docker compose version
@@ -33,7 +35,6 @@ pipeline {
         stage('Docker login') {
             steps {
                     sh 'docker login -u 0967840437 -p Anhhieu159220'
-             
             }
         }
 
