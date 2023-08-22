@@ -12,7 +12,7 @@ pipeline {
 
     stages {
         stage ('Check version docker'){
-            steps {
+            steps { 
                 sh '''
                 groupadd docker
                 usermod -aG docker jenkins
