@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Maven Install') {
             steps('Compilation') {
-                sh 'sudo ./mvnw clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
