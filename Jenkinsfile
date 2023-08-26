@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven_3_5_0'
-    }
     
     environment {
         registry = '0967840437/repository_hieudx'
