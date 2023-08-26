@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     environment {
         registry = '0967840437/repository_hieudx'
         registryCredential = 'dckr_pat_3EfgGocyQRcmJ5k-Vv9UnIifrB4'
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Maven Install') {
             steps('Compilation') {
-                sh 'mvn clean install -DskipTests'
+                sh './mvnw clean install -DskipTests'
             }
         }
 
