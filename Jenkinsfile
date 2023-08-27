@@ -32,7 +32,7 @@ pipeline {
         // }
         stage('Docker login') {
             steps {
-                    sh 'docker login -u 0967840437 -p Anhhieu159220'
+                    sh 'docker login -u 0967840437 --password-stdin Anhhieu159220'
             }
         }
 
