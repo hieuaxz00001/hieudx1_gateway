@@ -44,8 +44,8 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                sh 'docker tag gateway:latest 0967840437/gateway'
-                sh 'docker push 0967840437/gateway'
+                sh 'docker tag gateway:latest 0967840437/gateway:latest'
+                sh 'docker push 0967840437/gateway:latest'
             }
         }
     }
