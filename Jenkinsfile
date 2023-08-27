@@ -41,13 +41,5 @@ pipeline {
                 sh 'docker build -t gateway:latest .'
             }
         }
-
-        stage('Docker Push') {
-            steps {
-                sh 'docker tag gateway:latest 0967840437/repository_hieudx:latest'
-                sh 'docker login -u 0967840437 --password-stdin Anhhieu159220'
-                sh 'docker push 0967840437/gateway:latest'
-            }
-        }
     }
 }
