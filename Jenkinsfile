@@ -30,21 +30,21 @@ pipeline {
         //         sh './mvnw test -Punit'
         //     }
         // }
-        stage('Docker login') {
-            steps {
-                    sh 'docker login -u 0967840437 --password-stdin Anhhieu159220'
-            }
-        }
+        // stage('Docker login') {
+        //     steps {
+        //             sh 'docker login -u 0967840437 --password-stdin Anhhieu159220'
+        //     }
+        // }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t hieudx1/gateway:latest .'
+                sh 'docker build -t gateway:latest .'
             }
         }
 
         stage('Docker Push') {
             steps {
-                sh 'docker push hieudx1/gateway:latest'
+                sh 'docker push 0967840437/gateway:latest'
             }
         }
     }
