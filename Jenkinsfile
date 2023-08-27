@@ -21,7 +21,7 @@ pipeline {
         stage('Maven Install') {
             steps('Compilation') {
                 sh 'chmod +x mvnw'
-                sh './mvnw clean install -DskipTests'
+                sh './mvnw -Dmaven.repo.local=/var/lib/jenkins/.m2 clean install -DskipTests'
             }
         }
 
