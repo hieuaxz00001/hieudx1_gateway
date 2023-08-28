@@ -7,6 +7,9 @@ pipeline {
         registryUserName = '0967840437'
         registryPassword = 'Anhhieu159220'
         dockerImage = ''
+        NAME = 'gateway'
+        VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
+        IMAGE = "${NAME}:${VERSION}"
     }
 
     stages {
@@ -38,7 +41,16 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t gateway:latest .'
+                sh "docker build -t ${NAME} ."
+            }
+        }
+
+        stage('Docker push image') {
+            steps {
+                echo "Running ${VERSION} on ${env.JENKINS_URL}"
+                echo "for brnach ${env.BRANCH_NAME}"
+                sh "docker tag ${NAME}:latest localhost:5000/${NAME}:${VERSION}"
+                sh "docker push localhost:5000/${NAME}:${VERSION}"
             }
         }
     }
