@@ -49,9 +49,9 @@ pipeline {
         stage('Docker push image') {
             steps {
                 echo "Running ${VERSION} on ${env.JENKINS_URL}"
-                echo "for brnach ${BRAND_NAME}"
-                sh "docker tag ${NAME}:latest localhost:5000/${NAME}:${VERSION}"
-                sh "docker push localhost:5000/${NAME}:${VERSION}"
+                sh "docker rmi"
+                sh "docker tag ${NAME}:latest localhost:8081/${NAME}:${VERSION}"
+                sh "docker push localhost:8081/${NAME}:${VERSION}"
             }
         }
     }
