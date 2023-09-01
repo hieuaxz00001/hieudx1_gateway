@@ -4,6 +4,8 @@ metadata:
   name: {{ include "deployment.fullname" . }}
   labels:
     {{- include "deployment.labels" . | nindent 4 }}
+imagePullSecrets:
+  - name: myregistrykey
 spec:
   type: {{ .Values.service.type }}
   ports:
