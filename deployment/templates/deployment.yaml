@@ -22,7 +22,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        - name: regcred
       {{- end }}
       serviceAccountName: {{ include "deployment.serviceAccountName" . }}
       securityContext:

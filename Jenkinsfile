@@ -47,8 +47,8 @@ pipeline {
                 sh "docker login --username ${registryUserName} --password ${registryPassword} localhost:8081"
                 sh "docker tag ${NAME}:latest localhost:8081/library/${NAME}:${VERSION}"
                 sh "docker push localhost:8081/library/${NAME}:${VERSION}"
-                sh "docker rmi localhost:8081/library/${NAME}:${VERSION}"
-                sh "docker rmi ${NAME}:latest"
+                // sh "docker rmi localhost:8081/library/${NAME}:${VERSION}"
+                // sh "docker rmi ${NAME}:latest"
             }
         }
     }

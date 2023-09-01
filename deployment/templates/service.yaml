@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "deployment.labels" . | nindent 4 }}
 imagePullSecrets:
-  - name: myregistrykey
+  - name: regcred
 spec:
   type: {{ .Values.service.type }}
   ports:
