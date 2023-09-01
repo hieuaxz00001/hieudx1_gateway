@@ -2,15 +2,10 @@ pipeline {
     agent any
 
     environment {
-        registry = '0967840437/repository_hieudx'
-        registryCredential = 'dckr_pat_3EfgGocyQRcmJ5k-Vv9UnIifrB4'
-        registryUserName = '0967840437'
-        registryPassword = 'Anhhieu159220'
-        dockerImage = ''
+        registryUserName = 'admin'
+        registryPassword = 'Harbor12345'
         NAME = 'gateway'
         VERSION = "${env.BUILD_ID}"
-        IMAGE = "${NAME}:${VERSION}"
-        BRAND_NAME = "${env.BRANCH_NAME}"
     }
 
     stages {
@@ -49,7 +44,7 @@ pipeline {
         stage('Docker push image') {
             steps {
                 echo "Running ${VERSION} on ${env.JENKINS_URL}"
-                sh "docker login --username admin --password Harbor12345 localhost:8081"
+                sh "docker login --username ${registryUserName} --password ${registryPassword} localhost:8081"
                 sh "docker tag ${NAME}:latest localhost:8081/library/${NAME}:${VERSION}"
                 sh "docker push localhost:8081/library/${NAME}:${VERSION}"
             }
