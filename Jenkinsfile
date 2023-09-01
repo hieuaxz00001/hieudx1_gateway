@@ -49,7 +49,6 @@ pipeline {
         stage('Docker push image') {
             steps {
                 echo "Running ${VERSION} on ${env.JENKINS_URL}"
-                sh "docker rmi"
                 sh "docker tag ${NAME}:latest localhost:8081/library/${NAME}:${VERSION}"
                 sh "docker push localhost:8081/library/${NAME}:${VERSION}"
             }
