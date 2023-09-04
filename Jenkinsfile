@@ -5,6 +5,7 @@ pipeline {
         registryUserName = '0967840437'
         registryPassword = 'Anhhieu159220'
         NAME = 'gateway'
+        MOBILE = '0967840437'
         VERSION = "${env.BUILD_ID}"
         PORT="5000"
     }
@@ -45,10 +46,10 @@ pipeline {
         stage('Docker push image') {
             steps {
                 echo "Running ${VERSION} on ${env.JENKINS_URL}"
-                sh "docker login --username ${registryUserName} --password ${registryPassword} localhost:${PORT}"
-                sh "docker tag ${NAME}:latest localhost:${PORT}/library/${NAME}:${VERSION}"
-                sh "docker push localhost:${PORT}/library/${NAME}:${VERSION}"
-                sh "docker rmi localhost:${PORT}/library/${NAME}:${VERSION}"
+                sh "docker login --username ${registryUserName} --password ${registryPassword}"
+                sh "docker tag ${NAME}:latest ${MOBILE}/${NAME}:${VERSION}"
+                sh "docker push ${MOBILE}/${NAME}:${VERSION}"
+                sh "docker rmi ${MOBILE}/${NAME}:${VERSION}"
                 sh "docker rmi ${NAME}:latest"
             }
         }
