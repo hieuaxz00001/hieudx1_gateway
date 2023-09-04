@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        registryUserName = 'admin'
-        registryPassword = 'Harbor12345'
+        registryUserName = '0967840437'
+        registryPassword = 'Anhhieu159220'
         NAME = 'gateway'
         VERSION = "${env.BUILD_ID}"
         PORT="5000"
