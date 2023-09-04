@@ -3,7 +3,7 @@ server:
 app:
   config:
     keycloak:
-      url: http://localhost:9090/auth
+      url: http://hieudx:9090/auth
       realm: hieudx-internet-banking
       client-secret: WMu7ciwCgy9Z4ylzGQ9EjViVRemwHtr3
       client-id: internet-banking-core-client
@@ -32,7 +32,7 @@ spring:
             client-id: ${app.config.keycloak.client-id}
             client-secret: ${app.config.keycloak.client-secret}
             provider: keycloak
-            redirect-uri: http://localhost:9090/login/oauth2/code/keycloak
+            redirect-uri: http://hieudx:9090/login/oauth2/code/keycloak
             scope: openid
       resourceserver:
         jwt:
