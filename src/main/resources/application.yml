@@ -1,12 +1,12 @@
 server:
   port: 9090
-app:
-  config:
-    keycloak:
-      url: http://hieudx:9090/auth
-      realm: hieudx-internet-banking
-      client-secret: WMu7ciwCgy9Z4ylzGQ9EjViVRemwHtr3
-      client-id: internet-banking-core-client
+# app:
+#   config:
+#     keycloak:
+#       url: http://hieudx:9090/auth
+#       realm: hieudx-internet-banking
+#       client-secret: WMu7ciwCgy9Z4ylzGQ9EjViVRemwHtr3
+#       client-id: internet-banking-core-client
 
 spring:
   main:
@@ -14,29 +14,29 @@ spring:
     allow-circular-references: true
   application:
     name: internet-banking-api-gateway
-  security:
-    oauth2:
-      client:
-        provider:
-          keycloak:
-            issuer-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}
-            authorization-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/auth
-            jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
-            token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
-            user-info-authentication-method: header
-            user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
-            user-name-attribute: preferred_username
-        registration:
-          internet-banking-core-client:
-            authorization-grant-type: authorization_code
-            client-id: ${app.config.keycloak.client-id}
-            client-secret: ${app.config.keycloak.client-secret}
-            provider: keycloak
-            redirect-uri: http://hieudx:9090/login/oauth2/code/keycloak
-            scope: openid
-      resourceserver:
-        jwt:
-          jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+  # security:
+  #   oauth2:
+  #     client:
+  #       provider:
+  #         keycloak:
+  #           issuer-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}
+  #           authorization-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/auth
+  #           jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+  #           token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
+  #           user-info-authentication-method: header
+  #           user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
+  #           user-name-attribute: preferred_username
+  #       registration:
+  #         internet-banking-core-client:
+  #           authorization-grant-type: authorization_code
+  #           client-id: ${app.config.keycloak.client-id}
+  #           client-secret: ${app.config.keycloak.client-secret}
+  #           provider: keycloak
+  #           redirect-uri: http://hieudx:9090/login/oauth2/code/keycloak
+  #           scope: openid
+  #     resourceserver:
+  #       jwt:
+  #         jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
   cloud:
     discovery:
       enabled: true
