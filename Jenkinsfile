@@ -7,7 +7,7 @@ pipeline {
         NAME = 'gateway'
         MOBILE = '0967840437'
         VERSION = "${env.BUILD_ID}"
-        PORT="5000"
+        PORT = '5000'
     }
 
     stages {

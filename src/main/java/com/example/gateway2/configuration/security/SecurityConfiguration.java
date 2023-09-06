@@ -59,33 +59,33 @@ import java.util.stream.Stream;
 @Slf4j
 public class SecurityConfiguration {
 
-    @Bean
-    SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {
+//     @Bean
+//     SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {
 
-        // Enable and configure CORS
-        http.cors(ServerHttpSecurity.CorsSpec::disable);
+//         // Enable and configure CORS
+//         http.cors(ServerHttpSecurity.CorsSpec::disable);
 
-        // State-less session (state in access-token only)
+//         // State-less session (state in access-token only)
 
-        // Disable CSRF because of state-less session-management
-        http.csrf(ServerHttpSecurity.CsrfSpec::disable);
-        // Return 401 (unauthorized) instead of 302 (redirect to login) when
-        // authorization is missing or invalid
-//        http.exceptionHandling(eh -> eh.authenticationEntryPoint((request, response, authException) -> {
-//            response.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Restricted Content\"");
-//            response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
-//        }));
+//         // Disable CSRF because of state-less session-management
+//         http.csrf(ServerHttpSecurity.CsrfSpec::disable);
+//         // Return 401 (unauthorized) instead of 302 (redirect to login) when
+//         // authorization is missing or invalid
+// //        http.exceptionHandling(eh -> eh.authenticationEntryPoint((request, response, authException) -> {
+// //            response.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Restricted Content\"");
+// //            response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
+// //        }));
 
-        // @formatter:off
-        http.authorizeExchange(authorizeExchangeSpec -> authorizeExchangeSpec.anyExchange().permitAll());
-//        http.authorizeExchange(exchanges -> exchanges
-//                .pathMatchers("/user/**").permitAll()
-//                .anyExchange()
-//                .authenticated())
-//                .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
-        // @formatter:on
-        return http.build();
-    }
+//         // @formatter:off
+//         http.authorizeExchange(authorizeExchangeSpec -> authorizeExchangeSpec.anyExchange().permitAll());
+// //        http.authorizeExchange(exchanges -> exchanges
+// //                .pathMatchers("/user/**").permitAll()
+// //                .anyExchange()
+// //                .authenticated())
+// //                .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
+//         // @formatter:on
+//         return http.build();
+//     }
 
 
 
