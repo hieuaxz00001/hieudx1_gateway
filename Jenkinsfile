@@ -53,5 +53,14 @@ pipeline {
                 sh "docker rmi ${NAME}:latest"
             }
         }
+
+        stage('Deploy Service') {
+            steps {
+                echo "Start Deploy Service"
+                sh "cd deployment"
+                sh "helm uninstall ${NAME}"
+                sh "helm install -n default ${NAME} ${NAME}/"
+            }
+        }
     }
 }
