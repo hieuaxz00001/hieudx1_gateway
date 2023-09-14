@@ -58,7 +58,7 @@ pipeline {
             steps {
                 echo "Start Deploy Service"
                 sh "cd deployment"
-                sh "helm uninstall ${NAME}"
+                // sh "helm uninstall ${NAME}"
                 sh "helm install -n default ${NAME} ${NAME}/"
             }
         }
