@@ -9,8 +9,8 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
-nameOverride: "gateway2"
-fullnameOverride: "gateway2"
+nameOverride: "gateway"
+fullnameOverride: "gateway"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -19,7 +19,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "gateway2"
+  name: "gateway"
 
 podAnnotations: {}
 
