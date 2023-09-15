@@ -56,10 +56,10 @@ pipeline {
 
         stage('Deploy Service') {
             steps {
-                echo 'Start Deploy Service'
-                sh "docker login --username ${registryUserName} --password ${registryPassword}"
-                sh 'cd deployment/'
-                sh 'ls'
+                // echo 'Start Deploy Service'
+                // sh "docker login --username ${registryUserName} --password ${registryPassword}"
+                // sh 'cd deployment/'
+                // sh 'ls'
                 // sh "helm uninstall ${NAME}"
                 // sh "helm install -n default ${NAME} deployment/${NAME}/"
                 script {
