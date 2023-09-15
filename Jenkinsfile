@@ -60,7 +60,7 @@ pipeline {
                 sh "cd deployment/"
                 sh "ls"
                 // sh "helm uninstall ${NAME}"
-                sh "helm install -n default ${NAME} ${NAME}/"
+                sh "helm install -n default ${NAME} deployment/${NAME}/"
             }
         }
     }
