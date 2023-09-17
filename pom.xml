@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>gateway2</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>gateway2</name>
 	<description>gateway2</description>
 	<properties>
