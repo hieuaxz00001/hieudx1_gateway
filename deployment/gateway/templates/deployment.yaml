@@ -44,6 +44,11 @@ spec:
                 configMapKeyRef:
                   name: db-config
                   key: registry-host
+            - name: CONFIG_HOST 
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  config-host
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
