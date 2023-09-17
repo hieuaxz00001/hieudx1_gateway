@@ -56,14 +56,9 @@ pipeline {
 
         stage('Deploy Service') {
             steps {
-                script {
-	    		    withCredentials([kubeconfigFile(credentialsId: 'myminikube', variable: 'KUBECONFIG')]) {
-                    sh 'helm list'
-                    }
-                }
                 // echo 'Start Deploy Service'
                 // sh "helm uninstall ${NAME}"
-                // sh "helm install -n default ${NAME} deployment/${NAME}/"
+                sh "helm install -n default ${NAME} deployment/${NAME}/"
             }
         }
     }
