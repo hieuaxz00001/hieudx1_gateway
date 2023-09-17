@@ -6,7 +6,7 @@ pipeline {
         registryPassword = 'Anhhieu159220'
         NAME = 'gateway'
         MOBILE = '0967840437'
-        VERSION = "${env.BUILD_ID}"
+        VERSION = '1.0.0'
         PORT = '5000'
     }
 
@@ -56,12 +56,12 @@ pipeline {
 
         stage('Deploy Service') {
             steps {
+                echo 'Start Deploy Service'
                 kubeconfig(credentialsId: 'myminikube', serverUrl:'', caCertificate:'') {
                     sh 'kubectl get pods'
+                    sh "helm uninstall ${NAME}"
                     sh "helm install -n default ${NAME} deployment/${NAME}/"
                 }
-            // echo 'Start Deploy Service'
-            // sh "helm uninstall ${NAME}"
             }
         }
     }
