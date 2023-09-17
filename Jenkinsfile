@@ -56,10 +56,12 @@ pipeline {
 
         stage('Deploy Service') {
             steps {
-                // echo 'Start Deploy Service'
-                // sh "helm uninstall ${NAME}"
-                sh "kubectl get pods"
-                sh "helm install -n default ${NAME} deployment/${NAME}/"
+                kubeconfig(credentialsId: 'myminikube') {
+                    sh 'kubectl get pods'
+                    sh "helm install -n default ${NAME} deployment/${NAME}/"
+                }
+            // echo 'Start Deploy Service'
+            // sh "helm uninstall ${NAME}"
             }
         }
     }
