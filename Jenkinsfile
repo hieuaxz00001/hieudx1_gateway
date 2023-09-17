@@ -56,7 +56,7 @@ pipeline {
 
         stage('Deploy Service') {
             steps {
-                kubeconfig(credentialsId: 'myminikube', serverUrl:'') {
+                kubeconfig(credentialsId: 'myminikube', serverUrl:'', caCertificate:'') {
                     sh 'kubectl get pods'
                     sh "helm install -n default ${NAME} deployment/${NAME}/"
                 }
