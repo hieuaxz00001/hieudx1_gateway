@@ -6,7 +6,7 @@ pipeline {
         registryPassword = 'Anhhieu159220'
         NAME = 'gateway'
         MOBILE = '0967840437'
-        VERSION = '1.0.0'
+        VERSION = '1.0.2'
         PORT = '5000'
     }
 
