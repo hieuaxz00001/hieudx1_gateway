@@ -58,6 +58,7 @@ pipeline {
             steps {
                 // echo 'Start Deploy Service'
                 // sh "helm uninstall ${NAME}"
+                sh "kubectl get pods"
                 sh "helm install -n default ${NAME} deployment/${NAME}/"
             }
         }
