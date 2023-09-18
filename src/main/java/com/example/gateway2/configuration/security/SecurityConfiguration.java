@@ -53,8 +53,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@EnableWebFluxSecurity
-@EnableReactiveMethodSecurity
+// @EnableWebFluxSecurity
+// @EnableReactiveMethodSecurity
 @Configuration
 @Slf4j
 public class SecurityConfiguration {
