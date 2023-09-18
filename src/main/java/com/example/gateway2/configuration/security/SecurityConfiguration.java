@@ -88,19 +88,19 @@ public class SecurityConfiguration {
     }
 
 
-
-   @Bean
-   public SecurityFilterChain springSecurityFilterChain(HttpSecurity httpSecurity, ServerLogoutSuccessHandler handler) throws Exception {
-       log.info("heheheheheh");
-       httpSecurity.csrf(AbstractHttpConfigurer::disable)
-               .authorizeHttpRequests(auth ->
-                       auth.requestMatchers(HttpMethod.GET,"/actuator/health/readiness", "/actuator/health/liveness", "/v3/api-docs/**","/public").permitAll()
-                               .anyRequest().authenticated()
-               ).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-               .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-
-       return httpSecurity.build();
-   }
+//
+//   @Bean
+//   public SecurityFilterChain springSecurityFilterChain(HttpSecurity httpSecurity, ServerLogoutSuccessHandler handler) throws Exception {
+//       log.info("heheheheheh");
+//       httpSecurity.csrf(AbstractHttpConfigurer::disable)
+//               .authorizeHttpRequests(auth ->
+//                       auth.requestMatchers(HttpMethod.GET,"/actuator/health/readiness", "/actuator/health/liveness", "/v3/api-docs/**","/public").permitAll()
+//                               .anyRequest().authenticated()
+//               ).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//               .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+//
+//       return httpSecurity.build();
+//   }
 
 
 }
