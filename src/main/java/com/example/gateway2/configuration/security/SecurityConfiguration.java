@@ -78,11 +78,11 @@ public class SecurityConfiguration {
 
         // @formatter:off
         http.authorizeExchange(authorizeExchangeSpec -> authorizeExchangeSpec.anyExchange().permitAll());
-       http.authorizeExchange(exchanges -> exchanges
-               .pathMatchers("/user/**").permitAll()
-               .anyExchange()
-               .authenticated())
-               .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
+    //    http.authorizeExchange(exchanges -> exchanges
+    //            .pathMatchers("/user/**").permitAll()
+    //            .anyExchange()
+    //            .authenticated())
+    //            .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
         // @formatter:on
         return http.build();
     }
