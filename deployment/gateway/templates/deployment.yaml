@@ -49,6 +49,11 @@ spec:
                 configMapKeyRef :
                   name : db-config
                   key :  config-host
+            - name: HOST_KEYCLOAK 
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  host-keycloak
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
