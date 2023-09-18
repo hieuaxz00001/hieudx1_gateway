@@ -2,4 +2,4 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://${CONFIG_HOST}:80
+      uri: http://${CONFIG_HOST}:8090
