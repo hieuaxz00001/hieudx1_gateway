@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 public class Gateway2Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		SpringApplication.run(Gateway2Application.class, args);
 	}
 
